@@ -17,7 +17,7 @@ const Login = () => {
     const handleClick = async (e) => {
         e.preventDefualt();
         try {
-            await axios.post(`http://localhost:8800/users/{username}`)
+            await axios.post(`http://localhost:8800/users/${username}`)
         } catch (err) {
             alert("User not found")
             console.log(err)
