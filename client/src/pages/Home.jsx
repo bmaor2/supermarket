@@ -1,15 +1,16 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
-import Products from "../pages/Products"
+import Categories from "../pages/Categories"
+
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Navbar />
-      <Products />
+      <Categories />
       <Footer />
-    </div>
+    </>
   )
 }
 

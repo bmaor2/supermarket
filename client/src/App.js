@@ -8,6 +8,7 @@ import Addproduct from "./pages/Addproduct";
 import Updateproduct from "./pages/Updateproduct";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import "./App.css";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<Addproduct />} />
           <Route path="/updateproduct:id" element={<Updateproduct />} />
-          {/* <Route path="/login" element={<Login />} /> */}
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
