@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
   })
 })
 
+
 router.post("/login", function (req, res) {
   let sql = `SELECT username,password
   FROM user 
@@ -55,7 +56,7 @@ router.post("/register", function (req, res) {
       con.query(sql, (err, result) => {
         if (err) { console.log(err); res.status(422).send(JSON.stringify({ isOK: false, message: "There was an Error with one of the syntax, try again." })); }
         else {
-          sql = `insert into user_info (user_id, password) values ('${result.insertId}','${req.body.password}')`;
+          sql = `insert into user_info (user_id, password) values ('${result.insertId*1}','${req.body.password}')`;
           con.query(sql, (err, result) => {
             if (err) { console.log(err); res.status(406).send(JSON.stringify({ isOK: false, message: "There was an Error with one of the syntax, try again." })); }
             else res.status(200).send(JSON.stringify({ isOK: true, message: "Registerd successfully!" }));
