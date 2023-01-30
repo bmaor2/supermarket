@@ -9,6 +9,7 @@ import Updateproduct from "./pages/Updateproduct";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./components/Cart/Cart";
+import "./App.css";
 
 function App() {
   return (

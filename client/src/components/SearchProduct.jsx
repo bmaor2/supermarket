@@ -1,41 +1,59 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SearchProduct = () => {
+    const [search, setSearch] = useState("");
+    const [products, setProducts] = useState([]);
+    const time = useRef();
+    const navigate = useNavigate()
 
-    const isValid = (e) => { // search validation
-        e.preventDefualt();
-        e.target.search.value.length > 0 && searchHandler(e.target.search.value);
-    }
-
-    const searchHandler = async (product_Name) => {
+    const handleChange = async (e) => {
+        if (e.target.value === "") {
+            setProducts([])
+        }
+        setSearch(e.target.value);
+        e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:3000/product',
-                { product_name: product_Name });
-
+            clearTimeout(time.current);
+            time.current = setTimeout(async () => {
+                const res = await axios.get(`http://localhost:8000/product/search?product=${e.target.value}`);
+                setProducts(res.data);
+            }, 500)
         } catch (err) {
             console.log(err)
         }
     }
 
-    return (
-        <form onSubmit={isValid} className='' >
-            <div className="search-box">
-                <input
-                    type='search'
-                    name='search'
-                    maxLength='50'
-                    placeholder='What do you looking for?'
-                    // ref={ }
-                />
-            </div>
+    const isValid = async (e) => { // search validation
+        e.preventDefault();
+        try {
+            const res = await axios.get(`http://localhost:8000/product/search?product=${search}`);
+            setProducts(res.data);
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
-            <div className="btn-box">
-                <button type='submit'>
-                    <span>search</span>
-                </button>
+    const resultClick = (id) => {
+        navigate(`/${id}`);
+    }
+
+    return (
+        <>
+
+            <div className='search_div'>
+                <input type='text' onChange={handleChange} value={search} maxLength='50' placeholder=':חיפוש מוצרים קיימים' />
+                <button onClick={isValid}></button>
             </div>
-        </form>
+            <div className={products.length === 0 ? "search_result not-active" : "search_result active"}>
+                {products?.map(product =>
+                    <div className='result' onClick={() => resultClick(product.product_id)} key={Math.random()}>
+                        <p>{product.product_name}</p>
+                        <img src={product.img_url} alt="" />
+                    </div>)}
+            </div>
+        </>
     );
 }
 

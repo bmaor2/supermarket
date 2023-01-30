@@ -1,14 +1,15 @@
 var express = require('express');
+const { read } = require('fs');
 var router = express.Router();
 var mysql = require('mysql')
 
 //CRUD for products:
 
 const db = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"z10mz10m",
-    database:"rom_market"
+    host: "localhost",
+    user: "root",
+    password: "z10mz10m",
+    database: "rom_market"
 })
 
 
@@ -32,6 +33,23 @@ router.get("/Cart", (req, res) => {
         }
         return res.send(data);
     });
+});
+
+router.get("/search", (req, res) => {
+    let product = req.query.product;
+    if (!product == '') {
+        const q = `SELECT * FROM product where product_name like '%${product}%'`;
+        db.query(q, (err, data) => {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            }
+            return res.send(data);
+        });
+    }
+    else{
+        res.status(400).send("can't search an empty field")
+    }
 });
 
 router.post("/", (req, res) => {
@@ -66,8 +84,8 @@ router.put("/:product_id", (req, res) => {
 
     const values = [
         req.body.product_name,
-        req.body.category_id*1,
-        req.body.price*1,
+        req.body.category_id * 1,
+        req.body.price * 1,
         req.body.img_url,
         req.body.description,
     ];
