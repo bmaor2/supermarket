@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-
-import React from 'react'
+import axios from 'axios';
 
 const SearchProduct = () => {
 
@@ -12,7 +11,7 @@ const SearchProduct = () => {
     const searchHandler = async (product_Name) => {
         try {
             const res = await axios.post('http://localhost:3000/product',
-                { product_name: product_name });
+                { product_name: product_Name });
 
         } catch (err) {
             console.log(err)

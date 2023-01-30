@@ -17,9 +17,20 @@ router.get("/", (req, res) => {
     db.query(q, (err, data) => {
         if (err) {
             console.log(err);
-            return res.json(err);
+            return res.send(err);
         }
-        return res.json(data);
+        return res.send(data);
+    });
+});
+
+router.get("/Cart", (req, res) => {
+    const q = "SELECT img_url, price, product_name FROM product";
+    db.query(q, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.send(err);
+        }
+        return res.send(data);
     });
 });
 
@@ -35,7 +46,7 @@ router.post("/", (req, res) => {
     ];
     db.query(q, [values], (err, data) => {
         if (err) return res.send(err);
-        return res.json(data);
+        return res.send(data);
     });
 });
 
@@ -45,7 +56,7 @@ router.delete("/:product_id", (req, res) => {
 
     db.query(q, [productId], (err, data) => {
         if (err) return res.send(err);
-        return res.json(data);
+        return res.send(data);
     });
 });
 
@@ -63,7 +74,7 @@ router.put("/:product_id", (req, res) => {
 
     db.query(q, [...values, productId], (err, data) => {
         if (err) return res.send(err);
-        return res.json(data);
+        return res.send(data);
     });
 });
 module.exports = router;
