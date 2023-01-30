@@ -41,7 +41,7 @@ router.post("/", (req, res) => {
 
 router.delete("/:product_id", (req, res) => {
     const productId = req.params.id;
-    const q = " DELETE FROM product WHERE product_id = ? ";
+    const q = " DELETE FROM product WHERE product_id = ?";
 
     db.query(q, [productId], (err, data) => {
         if (err) return res.send(err);
@@ -51,7 +51,7 @@ router.delete("/:product_id", (req, res) => {
 
 router.put("/:product_id", (req, res) => {
     const productId = req.params.id;
-    const q = "UPDATE product SET `product_name`= ?, `category_id`= ?, `price`= ?, `img_url`= ? , `description`=? WHERE product_id = ?";
+    const q = "UPDATE product SET `product_name`= ?, `category_id`= ?, `price`= ?, `img_url`= ?, `description`=? WHERE product_id = ?";
 
     const values = [
         req.body.product_name,
