@@ -62,7 +62,6 @@ function HomePage() {
         let data = await response.json();
         console.log(data.message);
         if (data.isOK) {
-            alert(data.message)
             const respone = await fetch(`http://localhost:8000/users?user=${username}`)
             data = await respone.json();
             localStorage.setItem('userOnline', JSON.stringify({ username: username, user_id: data.user_id }));

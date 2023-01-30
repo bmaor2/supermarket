@@ -8,7 +8,7 @@
 	left: calc(50% - 160px);
 }
 
-form {
+.container>form {
 	position: absolute;
 	text-align: center;
 	background: #fff;
@@ -20,7 +20,7 @@ form {
 	box-sizing: border-box;
 }
 
-h3 {
+form>h3 {
 	font-family: 'Dosis';
 	font-size: 35px;
 	text-transform: uppercase;
@@ -28,7 +28,7 @@ h3 {
 	margin-bottom: 30px;
 }
 
-input,
+form>input,
 button{
 	outline: none !important; 
 }

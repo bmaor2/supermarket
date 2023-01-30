@@ -7,11 +7,13 @@
 
 body {
 	background: #ffffff;
+	width: 99.2vw;
+	height: 100vh;
 }
 
 #root{
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	display: grid;
 }
 
@@ -19,5 +21,7 @@ body {
 	width: 100%;
 	height: 100%;
 	justify-self: center;
+	display: grid;
+	grid-template-rows: 15% 80% 5%;
 }
 
