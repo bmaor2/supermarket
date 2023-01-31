@@ -68,7 +68,7 @@ const Updateproduct = () => {
         name="img_url"
         onChange={handleChange}
       />
-      <button onClick={handleClick}>Update</button>
+      <button onClick={handelClick}>Update</button>
       {error && "Something went wrong!"}
       <Link to="/">See all products</Link>
     </div>

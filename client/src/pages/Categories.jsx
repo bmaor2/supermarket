@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import description_img from "../images/description_img.jpg"
-import "../css/categories.scss";
+// import description_img from "../images/description_img.jpg"
+// import "../css/categories.scss";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -61,14 +61,3 @@ const Categories = () => {
 };
 
 export default Categories;
-
-
-
-//<button className="update">
-{/* <Link
-to={`/update/${product.product_id}`}
-style={{ color: "inherit", textDecoration: "none" }}
->
-Update
-</Link>
-</button> */}

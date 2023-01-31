@@ -27,7 +27,7 @@ const Main = (props) => {
       <h3>{ }</h3>
       <div><span>${ }</span></div>
       <div>
-        <button>Add to Chart</button>
+        {/* <button>Add to Chart</button> */}
       </div>
     </main>
   )

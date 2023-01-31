@@ -19,6 +19,28 @@ function HomePage() {
     //  how to make it be handleChange${e.taget.type}?
     //     }
 
+
+
+    
+    //
+    // const isValid = (e) => { // Form validation
+    //     e.preventDefault();
+
+    //     if (/\S+@\S+\.\S+/.test(e.target.email.value)) {
+    //         setErrMsgEmailBox(false);
+    //         if (/.{6,}/.test(e.target.password.value)) {
+    //             setErrMsgPswBox(false);
+    //             connectAcc(e.target.email.value, e.target.password.value);
+    //         } else {
+    //             setErrMsgPswBox(true);
+    //             setErrMsgPsw('Password must contain at least 6 characters');
+    //         }
+    //     } else {
+    //         setErrMsgEmailBox(true);
+    //         setErrMsgEmail('Please enter a valid email');
+    //     }
+    // }
+
     const handleChange = e => {
         e.preventDefault();
         const { name, value } = e.target;
@@ -109,17 +131,41 @@ function HomePage() {
         <div className='container'>
             <form className='signUp'>
                 <h3>Register</h3>
-                <input onChange={handleChange} type="text" name='firstName' value={firstName} required placeholder="First Name:" />
+                <input onChange={handleChange}
+                    type="text"
+                    name='firstName'
+                    value={firstName} required
+                    placeholder="First Name:" />
                 <br />
-                <input onChange={handleChange} type="text" name='lastName' value={lastName} required placeholder="Last Name:" />
+                <input onChange={handleChange}
+                    type="text"
+                    name='lastName'
+                    value={lastName} required
+                    placeholder="Last Name:" />
                 <br />
-                <input onChange={handleChange} type="text" name='username' value={username} required placeholder="User Name:" />
+                <input onChange={handleChange}
+                    type="text"
+                    name='username'
+                    value={username} required
+                    placeholder="User Name:" />
                 <br />
-                <input onChange={handleChange} type="password" name='password' value={password} required placeholder="Password:" />
+                <input onChange={handleChange}
+                    type="password"
+                    name='password'
+                    value={password} required
+                    placeholder="Password:" />
                 <br />
-                <input onChange={handleChange} type="email" name='email' value={email} required placeholder="Email:" />
+                <input onChange={handleChange}
+                    type="email"
+                    name='email'
+                    value={email} required
+                    placeholder="Email:" />
                 <br />
-                <input onChange={handleChange} type="text" name='phoneNumber' value={phoneNumber} required placeholder="Phone Number:" />
+                <input onChange={handleChange}
+                    type="text"
+                    name='phoneNumber'
+                    value={phoneNumber} required
+                    placeholder="Phone Number:" />
                 <br />
                 <button className="form-btn sx log-in" onClick={() => {
                     document.getElementsByClassName("signIn")[0].className = "signIn active-sx";
@@ -127,20 +173,39 @@ function HomePage() {
                 }} type="button">Log In</button>
                 <button className='form-btn dx' onClick={register}> Register </button>
             </form>
+
+
+            {/* ///Log in form: */}
             <form className='signIn active-dx'>
                 <h3>Log In</h3>
-                <input className='w100' name='username' onChange={handleChange} type="text" value={username.value} placeholder="User Name:" />
+                <input className='w100'
+                    name='username'
+                    onChange={handleChange}
+                    type="text"
+                    value={username.value}
+                    placeholder="User Name:" />
+
                 <br />
-                <input className='w100'name='password' onChange={handleChange} type="password" value={password.value} placeholder="Password:" />
+
+                <input className='w100'
+                    name='password'
+                    onChange={handleChange}
+                    type="password"
+                    value={password.value}
+                    placeholder="Password:" />
+
                 <br />
-                <button className="form-btn sx back" onClick={() => {
-                    document.getElementsByClassName("signUp")[0].className = "signUp active-dx";
-                    document.getElementsByClassName("signIn")[0].className = "signIn inactive-sx";
-                }} type="button">Register</button>
-                <button className='form-btn dx' onClick={logInCheck}> Log-in </button>
+                <button className="form-btn sx back"
+                    onClick={() => {
+                        document.getElementsByClassName("signUp")[0].className = "signUp active-dx";
+                        document.getElementsByClassName("signIn")[0].className = "signIn inactive-sx";
+                    }}
+
+                    type="button">Register</button>
+                <button className='form-btn dx'
+                    onClick={logInCheck}> Log-in
+                </button>
             </form>
-
-
         </div>
     )
 }
