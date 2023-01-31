@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import description_img from "../images/description_img.jpg"
-// import "../css/categories.scss";
+import "../css/categories.scss";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -37,14 +37,18 @@ const Categories = () => {
     }
   };
 
+  const categoryClick = (id) => {
+    navigate(`/categories/${id}`)
+  }
+
   return (
     <>
       <div className="main_container">
         <div className="category_container">
           {categories.map((category) => (
             <div key={Math.random()} className="category">
+              <img onClick={()=>categoryClick(category.category_id)} src={category.img_url} alt="" />
               <h2>{category.category_name}</h2>
-              <img src={category.img_url} alt="" />
             </div>
           ))}
 

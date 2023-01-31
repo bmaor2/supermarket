@@ -10,7 +10,6 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      {/* <Products /> */}
       <Categories />
       {/* <Products /> */}
       <Footer />
