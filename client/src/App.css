@@ -23,5 +23,6 @@ body {
 	justify-self: center;
 	display: grid;
 	grid-template-rows: 15% 80% 5%;
+	grid-template-columns: 25% 75%;
 }
 

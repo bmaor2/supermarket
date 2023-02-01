@@ -14,7 +14,7 @@ const db = mysql.createConnection({
 
 
 router.get("/", (req, res) => {
-    const q = "SELECT * FROM product";
+    const q = `SELECT * FROM product where category_id = ${req.query.category}`;
     db.query(q, (err, data) => {
         if (err) {
             console.log(err);
@@ -23,6 +23,21 @@ router.get("/", (req, res) => {
         return res.send(data);
     });
 });
+
+router.get("/img", (req, res) => {
+    res.sendFile(req.query.imgUrl)
+});
+
+// router.get("/product", (req, res) => {
+//     const q = "SELECT * FROM product";
+//     db.query(q, (err, data) => {
+//         if (err) {
+//             console.log(err);
+//             return res.send(err);
+//         }
+//         return res.send(data);
+//     });
+// });
 
 router.get("/Cart", (req, res) => {
     const q = "SELECT img_url, price, product_name FROM product";
