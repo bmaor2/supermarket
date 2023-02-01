@@ -1,0 +1,27 @@
+.empty_cart{
+    margin-top: 30%;
+    margin-left: 10%;
+    width: 90%;
+}
+
+.cart{
+    text-align: center;
+    grid-column: 1;
+    overflow: auto;
+    .cart_product_container{
+        .cart_product>*{
+            margin-right: 1%;
+            margin-left: 3%;
+        }
+        .cart_product{
+            div{
+                display: flex;
+            }
+            display: grid;
+            grid-template-columns: 20% 60% 20%;
+            img{
+                width: 50%;
+            }
+        }
+    }
+}

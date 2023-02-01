@@ -23,6 +23,10 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/img", (req, res) => {
+    res.sendFile(req.query.imgUrl)
+});
+
 router.post("/", (req, res) => {
     const q = "INSERT INTO product (`product_name`, `category_id`,`price`, `img_url`,`description`) VALUES (?)";
 

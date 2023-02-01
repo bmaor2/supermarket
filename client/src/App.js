@@ -3,15 +3,13 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Home from "./pages/Home";
-import Addproduct from "./pages/Addproduct";
-import Updateproduct from "./pages/Updateproduct";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Categories from "./pages/Categories";
-import { Product } from "./components/Cart/Product";
-import Cart from "./components/Cart/Cart"
 import "./App.css";
+import Categories from "./components/category/Categories";
+import Addproduct from "./components/products/Addproduct/Addproduct";
+import Products from "./components/products/products";
+import Updateproduct from "./components/products/Updateproduct";
+import Home from "./Home";
+import Login from "./pages/login/Login";
 
 function App() {
   return (
@@ -23,8 +21,8 @@ function App() {
           <Route path="/update/:id" element={<Updateproduct />} />
           <Route path="/login" element={<Login />} />
           <Route path="/categories" element={<Categories />} />
-          <Route path="/categories/:id" />
-          <Route path="/register" element={<Register />} />
+          <Route path="/categories/:id" element={<Products />} />
+          <Route path="/products" element={<Products />} />
           {/* <Route path="/cart" element={<Cart />} /> */}
         </Routes>
       </BrowserRouter>
