@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Product } from "../components/Cart/Product";
 // import description_img from "../images/description_img.jpg"
 import "../css/categories.scss";
 
@@ -38,7 +39,7 @@ const Categories = () => {
   };
 
   const categoryClick = (id) => {
-    navigate(`/categories/${id}`)
+    navigate(`/categories/${id}`, {state: <Product category_id={id} />})
   }
 
   return (
@@ -54,10 +55,8 @@ const Categories = () => {
 
         </div>
         <img src="https://tpc.googlesyndication.com/simgad/10022496952409744435" alt="" />
-        <button className="addHome">
-          <Link to="/add" style={{ color: "inherit", textDecoration: "none" }}>
-            Add new product
-          </Link>
+        <button onClick={()=>navigate("/add")} className="addHome">
+          Add Product
         </button>
       </div>
     </>

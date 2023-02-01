@@ -1,6 +1,6 @@
 // import React, { useContext } from "react";
 // import { ShopContext } from "../../context/shop-context";
-// import { PRODUCTS } from "./productsdb";
+// import { Product } from "./Product";
 // import { CartItem } from "./cart-item";
 // import { useNavigate } from "react-router-dom";
 // import "./Cart.css"
