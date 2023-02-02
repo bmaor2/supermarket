@@ -41,7 +41,6 @@ const SearchProduct = () => {
 
     return (
         <>
-
             <div className='search_div'>
                 <input type='text' onChange={handleChange} value={search} maxLength='50' placeholder='...חפש פריט ' />
                 <button onClick={isValid}></button>

@@ -41,16 +41,13 @@ const Products = () => {
         else {
             for (let i = 0; i < userOnline.cart.length; i++) {
                 if (userOnline.cart[i].product_id * 1 !== product.product_id * 1) {
-                    console.log("in true");
                     isNotExist = true;
                 }
                 else {
-                    console.log("in false", userOnline.cart[i].product_id, product.product_id);
                     isNotExist = false;
                     return;
                 }
             }
-            console.log(isNotExist);
         }
         let sum = 0;
         if (isNotExist) {
@@ -58,7 +55,10 @@ const Products = () => {
             for (let i = 0; i < userOnline.cart.length; i++) {
                 sum += userOnline.cart[i].price * userOnline.cart[i].quantity;
             }
-        } else console.log("no");
+        }
+        if (!isNotExist) {
+            alert("this product is already exists");
+        }
         userOnline.totalPrice = sum;
         localStorage.setItem("userOnline", JSON.stringify(userOnline))
         setRenderCart(!renderCart);
@@ -78,26 +78,25 @@ const Products = () => {
         <>
             <Navbar />
             <div className="main_container">
-                <div onClickCapture={() => {setIsActive(false); setQuantity(1)}} className="product_container">
-                    {Products.map((product) => (
+                <div onClickCapture={() => { setIsActive(false); setQuantity(1) }} className="product_container">
+                    {Products.length ? Products.map((product) => (
                         <div key={Math.random()} className="product">
                             <img onClick={() => productClick(product)} src={`http://localhost:8000/product/img?imgUrl=${product.img_url}`} alt="" />
                             <h2>{product.product_name}</h2>
                             <h4>₪ {product.price}</h4>
                         </div>
-                    ))}
+                    )) : <h1>This Category Is Empty</h1>}
                 </div>
                 <img src="https://tpc.googlesyndication.com/simgad/10022496952409744435" alt="" />
                 <Link to="/">Go to the main page</Link>
-
             </div>
             <div className={isActive ? "product_show active" : "product_show"}>
                 <h1>{productToShow.product_name}</h1>
-                <img src={productToShow.img_url} alt="" />
+                <img src={`http://localhost:8000/product/img?imgUrl=${productToShow.img_url}`} alt="" />
                 <h3>{productToShow.description}</h3>
-                <input type="number" name="quantity" min='1' placeholder="1" onChange={handleQuantity} value={quantity || 1} />
+                <label htmlFor="quantity">Quantity: <input type="number" name="quantity" min='1' placeholder="1" onChange={handleQuantity} value={quantity || 1} /></label>
                 <h4>₪ {productToShow.price}</h4>
-                <span className="addToCart" onClick={() => addToCart(productToShow)}>add to cart</span>
+                <span className="addToCart" onClick={() => addToCart(productToShow)}><b>Add To Cart</b></span>
             </div>
         </>
     );

@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    justify-self: center;
-
+    position: absolute;
+    left: 40%;
+    text-align: center;
 
     h1 {
         text-align: center;

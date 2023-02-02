@@ -10,10 +10,9 @@ export const CartItem = (props) => {
       <div>
         <img src={`http://localhost:8000/product/img?imgUrl=${img_url}`} alt={product_name} />
         <label>
-          Quantity:
-          {quantity}
+          כמות: {quantity}
         </label>
-        <p onClick={() => props.removeItem(product_id)}>remove item</p>
+        <p onClick={() => props.removeItem(product_id)}>✖</p>
       </div>
       <p>{price} ₪</p>
     </div>

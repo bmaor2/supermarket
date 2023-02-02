@@ -8,19 +8,13 @@ import Navbar from './components/navbar/Navbar';
 const Home = () => {
   const navigate = useNavigate();
 
-
-  // useEffect(()=>{
-  //   if (localStorage.getItem("userOnline") == null) {
-  //     navigate("/login")
-  //   }
-  // },[])
+  useEffect(() => {
+    navigate("/Categories");
+  }, [])
 
 
   return (
-    <>
-      <Navbar />
-      <Categories />
-    </>
+    <></>
   )
 }
 

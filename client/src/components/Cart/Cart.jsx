@@ -3,6 +3,8 @@ import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "../../functions/getCookie";
+
 import "./Cart.scss";
 import { CartItem } from "./CartItem";
 
@@ -14,13 +16,17 @@ const Cart = () => {
     const [isRemoved, setIsRemoved] = useState(false)
 
     useEffect(() => {
+        let type;
+        let typeOfUser = getCookie('user').split(":")[1];
+    }, [])
+
+    useEffect(() => {
         setCartItems(JSON.parse(localStorage.getItem("userOnline"))?.cart);
         setTotalPrice(JSON.parse(localStorage.getItem("userOnline"))?.totalPrice * 1)
     }, [JSON.parse(localStorage.getItem("userOnline"))?.cart?.length, isRemoved])
 
     const createDateFormat = (d) => {
         let date = d.getFullYear().toString() + '-' + `${d.getMonth().toString().length === 2 ? d.getMonth().toString() : '0' + d.getMonth().toString()}` + '-' + `${d.getDay().toString().length === 2 ? d.getDay().toString() : '0' + d.getDay().toString()}` + ' ' + d.getHours().toString() + ':' + `${d.getMinutes().toString().length === 2 ? d.getMinutes().toString() : '0' + d.getMinutes().toString()}` + ':' + `${d.getSeconds().toString().length === 2 ? d.getSeconds().toString() : '0' + d.getSeconds().toString()}`;
-
         return date;
     }
 
@@ -35,19 +41,18 @@ const Cart = () => {
         userOnline.totalPrice -= productPrice;
         userOnline.cart = tempArr;
         localStorage.setItem("userOnline", JSON.stringify(userOnline));
-        window.location.reload();
     }
 
     const payment = async () => {
         let d = new Date()
         userOnline.date_ordered = createDateFormat(d);
-        try{
+        try {
             let paymentOrder = await axios.post(`http://localhost:8000/orders/newOrder`, userOnline)
             let result = await paymentOrder.data;
-            console.log(result);
+            alert(result);
         }
-        catch{
-            
+        catch {
+
         }
 
         userOnline.cart = [];
@@ -59,16 +64,18 @@ const Cart = () => {
 
     return (
         <div className="cart">
-            <h1>Your Cart Items</h1>
+            <h1>My Cart</h1>
             {cartItems?.length > 0
                 ?
-                <><div className="cart_product_container">
-                    {cartItems?.map(product => <CartItem removeItem={removeItem} key={Math.random()} product={product} />)}
-                </div>
+                <>
+                    <div className="cart_product_container">
+                        {cartItems?.map(product => <CartItem removeItem={removeItem} key={Math.random()} product={product} />)}
+                    </div>
                     <div className="payment">
-                        <p>total price: {totalPrice}</p>
-                        <button onClick={payment}>לתשלום</button>
-                    </div></>
+                        <p>סך הכל לתשלום: {totalPrice}₪</p>
+                        <button onClick={payment}>לביצוע הזמנה</button>
+                    </div>
+                </>
                 :
                 <img className="empty_cart" src='http://localhost:8000/product/img?imgUrl=/home/hilma/study/Class_projects/supermarket/server/images/default/emptyCart.png' alt="empty cart" />}
 

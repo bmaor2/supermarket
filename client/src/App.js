@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import Categories from "./components/category/Categories";
+import Acategories from "./components/category/Acategories";
 import Addproduct from "./components/products/Addproduct/Addproduct";
 import Products from "./components/products/products";
 import Updateproduct from "./components/products/Updateproduct";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/update/:id" element={<Updateproduct />} />
           <Route path="/login" element={<Login />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/Acategories" element={<Acategories />} />
           <Route path="/categories/:id" element={<Products />} />
           <Route path="/products" element={<Products />} />
           {/* <Route path="/cart" element={<Cart />} /> */}

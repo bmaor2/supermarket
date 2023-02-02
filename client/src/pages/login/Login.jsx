@@ -14,33 +14,6 @@ function Login() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const navigate = useNavigate();
 
-
-    //     const handleChange = e=>{
-    //  how to make it be handleChange${e.taget.type}?
-    //     }
-
-
-
-    
-    //
-    // const isValid = (e) => { // Form validation
-    //     e.preventDefault();
-
-    //     if (/\S+@\S+\.\S+/.test(e.target.email.value)) {
-    //         setErrMsgEmailBox(false);
-    //         if (/.{6,}/.test(e.target.password.value)) {
-    //             setErrMsgPswBox(false);
-    //             connectAcc(e.target.email.value, e.target.password.value);
-    //         } else {
-    //             setErrMsgPswBox(true);
-    //             setErrMsgPsw('Password must contain at least 6 characters');
-    //         }
-    //     } else {
-    //         setErrMsgEmailBox(true);
-    //         setErrMsgEmail('Please enter a valid email');
-    //     }
-    // }
-
     const handleChange = e => {
         e.preventDefault();
         const { name, value } = e.target;
@@ -84,8 +57,10 @@ function Login() {
         let data = await response.json();
         console.log(data.message);
         if (data.isOK) {
+            document.cookie = `user=${`${username}:${window.btoa(data.user_type)}`}; expires=1`;
             const respone = await fetch(`http://localhost:8000/users?user=${username}`)
             data = await respone.json();
+            console.log(data);
             localStorage.setItem('userOnline', JSON.stringify({ username: username, user_id: data.user_id }));
             navigate("/")
         } else {

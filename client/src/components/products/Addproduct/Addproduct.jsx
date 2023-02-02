@@ -42,6 +42,7 @@ const Addproduct = () => {
         placeholder="The name of the product..."
         name="product_name"
         onChange={handleChange}
+        required
       />
       <textarea
         rows={5}
@@ -49,24 +50,28 @@ const Addproduct = () => {
         placeholder="product's description "
         name="description"
         onChange={handleChange}
+        required
       />
       <input
         type="number"
         placeholder="product category"
         name="category_id"
         onChange={handleChange}
+        required
       />
       <input
         type="number"
         placeholder="product price"
         name="price"
         onChange={handleChange}
+        required
       />
       <input
         type="text"
         placeholder="img url"
         name="img_url"
         onChange={handleChange}
+        
       />
       <button onClick={handleClick} className="formButton">Add</button>
       {error && "Something went wrong!"}

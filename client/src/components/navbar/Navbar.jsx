@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from 'react-router-dom'
-import "./navbar.css";
+import "./navbar.scss";
 import SearchProduct from '../search/SearchProduct';
 import { useState } from "react";
 import { useEffect } from "react";
@@ -21,6 +21,7 @@ const Navbar = () => {
                 break;
             case "logout":
                 localStorage.clear();
+                document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
                 navigate("/")
                 window.location.reload();
                 break;
@@ -41,14 +42,10 @@ const Navbar = () => {
     return (
         <>
             <div className="navbar">
-                <div className="logo"><img src={`http://localhost:8000/navbar/img?imgUrl=/home/hilma/study/Class_projects/supermarket/server/images/navbar/logo.png`} alt="" /></div>
+                <div className="logo"><img src={`http://localhost:8000/navbar/img?imgUrl=/home/hilma/study/Class_projects/supermarket/server/images/navbar/logo.png`} alt="logo" /></div>
                 <div className="links">
-                    <div className={cartAmount > 0 ? "cart_container active_cart" : "cart_container"}>
-                        <p className="cart_amount">{cartAmount > 0 ? cartAmount : ""}</p>
-                        <img className="cart_logo" src={`http://localhost:8000/navbar/img?imgUrl=/home/hilma/study/Class_projects/supermarket/server/images/navbar/cart-icon.png`} alt="cart" />
-                    </div>
-                    <p>{username}</p>
-                    <p className="logout_span" id={!username == "" ? "logout" : "login"} onClick={handleClick}>{!username == "" ? "Logout" : "Login"}</p>
+                    <p className={username ? "w3-button w3-white w3-border w3-border-red w3-round-large w3-wide w3-large w3-hover-blue" : ""}>{username}</p>
+                    <p className="w3-button w3-white w3-border w3-border-red w3-round-large w3-wide w3-large w3-hover-blue" id={!username == "" ? "logout" : "login"} onClick={handleClick}>{!username == "" ? "Logout" : "Login"}</p>
                     <SearchProduct />
                 </div>
             </div>

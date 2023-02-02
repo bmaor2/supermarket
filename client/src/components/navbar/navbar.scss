@@ -1,0 +1,99 @@
+.navbar {
+    grid-row: 1;
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 85% 15%;
+    position: relative;
+    z-index: 9010;
+
+    .logo {
+        grid-column: 2/3;
+        width: 100%;
+        height: 75%;
+        align-self: flex-end;
+        box-sizing: border-box;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+    }
+
+    .links {
+        width: 100%;
+        height: 100%;
+        grid-row: 1;
+        grid-column: 1/2;
+        display: grid;
+        grid-template-columns: 10% 10% 10% 10% 60%;
+
+        .logout_span {
+            cursor: pointer;
+        }
+
+        .search_result.active {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            width: 100%;
+
+            .result {
+                width: 100%;
+                display: flex;
+                background-color: beige;
+
+                p {
+                    z-index: 9009;
+                    background-color: aqua;
+                }
+
+                img {
+                    width: 3%;
+                }
+            }
+        }
+
+        .search_result.not-active {
+            display: none;
+        }
+    }
+
+    .w3-button {
+        height: 30%;
+        margin-bottom: 10%;
+        align-self: center;
+        align-content: center;
+        font-variant-position: super;
+    }
+
+    .search_div {
+        align-self: center;
+        grid-column: -2/-1;
+        display: grid;
+        width: 100%;
+        height: 50%;
+        grid-template-columns: 85% 15%;
+
+        input {
+            font-family: 'IBM Plex Sans Hebrew', 'sans-serif';
+            border: 3px solid black;
+            border-radius: 300px;
+            position: relative;
+            width: 99%;
+            height: 80%;
+            font-size: x-large;
+            color: black;
+        }
+
+        button {
+            width: 100%;
+            background: url(http://localhost:8000/navbar/img?imgUrl=/home/hilma/study/Class_projects/supermarket/server/images/navbar/search_icon.png);
+            background-size: 30%;
+            background-position: left;
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}

@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 
 
 router.post("/login", function (req, res) {
-  let sql = `SELECT username,password
+  let sql = `SELECT username,password,user_type
   FROM user 
   JOIN user_info 
   using(user_id)
@@ -32,7 +32,7 @@ router.post("/login", function (req, res) {
     if (err) {console.log(err); res.status(405).send(JSON.stringify({ isOK: false, message: "One of the fields is incorrect." + err })) }
     console.log(req.body);
     if (result[0]) {
-      res.status(200).send(JSON.stringify({ isOK: true, message: "login successfully" }))
+      res.status(200).send(JSON.stringify({ isOK: true, message: "login successfully" ,user_type: result[0].user_type}))
     }
     else {
       res.status(404).send(JSON.stringify({ isOK: false, message: "One of the fields is incorrect."}))

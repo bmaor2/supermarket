@@ -2,17 +2,29 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getCookie } from "../../functions/getCookie";
 import axios from "axios";
-import { Product } from "../components/Cart/Product";
-// import description_img from "../images/description_img.jpg"
 import "./categories.scss";
+import Navbar from "../navbar/Navbar";
 
 const Categories = (props) => {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
-
   useEffect(() => {
+    let type;
+    let typeOfUser = getCookie('user').split(":")[1];
+    if (typeOfUser !== undefined) {
+      type = window.atob(typeOfUser);
+    }
+    if (type === "admin") {
+      navigate("/Acategories");
+    }
+    else if (type === "customer" || !type) {
+      navigate("/Categories");
+    }
+
+
     const fetchAllCategories = async () => {
       try {
         const res = await axios.get("http://localhost:8000/category");
@@ -34,27 +46,23 @@ const Categories = (props) => {
   };
 
   const categoryClick = (id) => {
-    navigate(`/categories/${id}`, {state: <Product category_id={id} />})
+    navigate(`/categories/${id}`);
   }
 
   return (
     <>
+      <Navbar />
       <div className="main_container">
         <div className="category_container">
           {categories.map((category) => (
             <div key={Math.random()} className="category">
-              <img onClick={() => categoryClick(category.category_id)} src={`http://localhost:8000/category/img?imgUrl=${category.img_url}`} alt="" />
+              <img onClick={() => categoryClick(category.category_id)} src={`http://localhost:8000/category/img?imgUrl=${category.img_url}`} alt={category.category_name} />
               <h2>{category.category_name}</h2>
             </div>
           ))}
 
         </div>
-        <img src={`http://localhost:8000/category/img?imgUrl=/home/hilma/study/Class_projects/supermarket/server/images/default/banner.jpeg`}  alt="" />
-        <button className="addHome">
-          <Link to="/add" style={{ color: "inherit", textDecoration: "none" }}>
-            Add new product
-          </Link>
-        </button>
+        <img src={`http://localhost:8000/category/img?imgUrl=/home/hilma/study/Class_projects/supermarket/server/images/default/banner.jpeg`} alt="banner" />
       </div>
     </>
   );

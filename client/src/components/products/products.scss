@@ -13,6 +13,10 @@
         cursor: pointer;
     }
 
+    a{
+        width: 19%;
+    }
+
     .product_container {
         grid-row: 2;
         width: 100%;
@@ -53,13 +57,52 @@
 }
 
 .active{
-    background-color: rgb(216, 216, 216);
-    display: grid;
-    width: 50%;
-    height: 75%;
     position: absolute;
-    top: 15%;
-    left: 25%;
+    display: grid;
+    width: 40%;
+    height: 80%;
+    top: 10%;
+    left: 30%;
+    z-index: 9999;
+    text-align: center;
+    justify-items: center;
+    border-radius: 30px;
+    border: 1px solid black;
+    font-size: xx-large;
+    background-color: rgba(85, 186, 244, 0.871);
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+    label{
+        width: 40%;
+        color: white;
+        background-color: rgba(233, 67, 67, 0.845);
+        border-radius: 20px;
+        border: 1px solid white;
+        height: 70%;
+    }
+    img{
+        width: 40%;
+        border-radius: 50px;
+        border: 3px solid white;
+    }
+    h1{
+        align-self: center;
+        width: 40%;
+        color: white;
+        background-color: rgba(233, 67, 67, 0.845);
+        border-radius: 20px;
+        border: 1px solid white;
+
+    }
+    h4{
+        font-size: xx-large;
+    }
+    input{
+        margin: 3%;
+        padding: 1%;
+        width: 20%;
+        height: 50%;
+        border-radius: 30px;
+    }
     .addToCart{
         cursor: pointer;
     }
